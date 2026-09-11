@@ -11,15 +11,24 @@ while True:
     if user_input.lower() == "quit":
         break
 
+    # handle invalid inputs (string / negative )
+    if not user_input.isdigit():
+        print("[ERROR] Invalid input. Please enter a valid integer.")
+        failed_entries += 1
+        continue
+
     # convert input to integer
     new_inventory = int(user_input)
 
     # update inventory
     inventory = inventory + new_inventory
-    
 
+    # check inventory for overstock (> 500)
+    if inventory > 500:
+        print("[WARNING] Total Inventory has exceeded 500 units.")
+        break
 
 # reporting
-print("--------- Inventory Report ---------")
+print("\n--------- Inventory Report ---------")
 print(f"Total Units Processed: {inventory}")
 print(f"Number of Failed/Rejected Entries: {failed_entries}")
