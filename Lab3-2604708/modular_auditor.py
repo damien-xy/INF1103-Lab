@@ -16,7 +16,7 @@ def get_valid_input():
 
     # handle invalid inputs (string / negative)
     if not user_input.isdigit():
-        print("[ERROR] Invalid input. Please enter a valid integer.")
+        print("[ERROR] Invalid input. Please enter a valid integer.\n")
         return None
 
     # return input as integer
@@ -30,6 +30,8 @@ def process_delivery(current_total, new_value):
 
 def calculate_tax(amount):
     """  takes a delivery amount and returns the 10% tax """
+
+    return amount * 0.10
 
 def generate_report(total_units, failed_attempts):
     """ prints final inventory report """
@@ -56,6 +58,10 @@ while True:
 
     # update inventory
     inventory = process_delivery(inventory, new_inventory)
+
+    # calculate tax for this delivery
+    tax = calculate_tax(new_inventory)
+    print(f"Tax for this delivery: {tax:.2f}\n")
 
     # check inventory for overstock (> 500)
     if inventory > 500:
