@@ -33,6 +33,9 @@ def calculate_tax(amount):
 
 def generate_report(total_units, failed_attempts):
     """ prints final inventory report """
+    print("\n--------- Inventory Report ---------")
+    print(f"Total Units Processed: {total_units}")
+    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 
 # -----------------------------------
 # main
@@ -60,6 +63,4 @@ while True:
         break
 
 # reporting
-print("\n--------- Inventory Report ---------")
-print(f"Total Units Processed: {inventory}")
-print(f"Number of Failed/Rejected Entries: {failed_entries}")
+generate_report(inventory, failed_entries)
