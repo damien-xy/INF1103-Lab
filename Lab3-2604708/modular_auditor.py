@@ -10,11 +10,11 @@ def get_valid_input():
     """
     user_input = input("Enter stock quantity or type 'quit': ").strip()
 
-    # stop program if user types 'quit'
+    # return 'quit' if user types 'quit'
     if user_input.lower() == "quit":
         return "quit"
 
-    # handle invalid inputs (string / negative)
+    # return None if invalid input (string / negative)
     if not user_input.isdigit():
         print("[ERROR] Invalid input. Please enter a valid integer.\n")
         return None
