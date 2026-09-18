@@ -8,9 +8,25 @@ def get_valid_input():
         handles the prompt and input validation 
         returns a valid integer or a "quit" signal
     """
+    user_input = input("Enter stock quantity or type 'quit': ").strip()
+
+    # stop program if user types 'quit'
+    if user_input.lower() == "quit":
+        return "quit"
+
+    # handle invalid inputs (string / negative)
+    if not user_input.isdigit():
+        print("[ERROR] Invalid input. Please enter a valid integer.")
+        return None
+
+    # return input as integer
+    return int(user_input)
 
 def process_delivery(current_total, new_value):
     """ calculates the new total and returns it """
+    new_total = current_total + new_value
+
+    return new_total
 
 def calculate_tax(amount):
     """  takes a delivery amount and returns the 10% tax """
@@ -26,23 +42,17 @@ inventory = 0
 failed_entries = 0
 
 while True:
-    user_input = input("Enter stock quantity or type 'quit': ").strip()
+    new_inventory = get_valid_input()
 
-    # stop program if user types 'quit'
-    if user_input.lower() == "quit":
+    if new_inventory == "quit":
         break
 
-    # handle invalid inputs (string / negative )
-    if not user_input.isdigit():
-        print("[ERROR] Invalid input. Please enter a valid integer.")
+    if new_inventory is None:
         failed_entries += 1
         continue
 
-    # convert input to integer
-    new_inventory = int(user_input)
-
     # update inventory
-    inventory = inventory + new_inventory
+    inventory = process_delivery(inventory, new_inventory)
 
     # check inventory for overstock (> 500)
     if inventory > 500:
