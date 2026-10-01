@@ -4,6 +4,13 @@
 # imports
 # -----------------------------------
 from datetime import datetime
+from pathlib import Path
+
+# -----------------------------------
+# file paths
+# -----------------------------------
+SCRIPT_DIR = Path(__file__).resolve().parent
+INVENTORY_FILE = SCRIPT_DIR / "inventory.txt"
 
 # -----------------------------------
 # functions
@@ -47,7 +54,7 @@ def generate_report(total_units, failed_attempts):
 def load_inventory():
     """ loads inventory from inventory.txt """
     try:
-        with open("inventory.txt", "r", encoding="utf-8") as file:
+        with open(INVENTORY_FILE, "r", encoding="utf-8") as file:
             # skip inventory report heading
             file.readline()
 
@@ -78,7 +85,7 @@ def save_inventory(updated_inventory, transaction_history):
 
     timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    with open("inventory.txt", "w", encoding="utf-8") as file:
+    with open(INVENTORY_FILE, "w", encoding="utf-8") as file:
         file.write(f"--------- Inventory Report for {timestamp} ---------\n")
         file.write(f"Total Inventory: {updated_inventory}\n")
         file.write(f"Transactions: {', '.join(str(value) for value in transaction_history)}\n")
