@@ -55,15 +55,19 @@ def load_inventory():
     """ loads inventory from inventory.txt """
     try:
         with open(INVENTORY_FILE, "r", encoding="utf-8") as file:
-            # skip inventory report heading
-            file.readline()
+            # read all non-empty lines
+            lines = [line.strip() for line in file if line.strip()]
 
-            # read total inventory
-            inventory_line = file.readline().strip()
+            # return empty inventory if file is empty
+            if not lines:
+                return 0, []
+
+            # get latest total inventory
+            inventory_line = lines[-2]
             inventory = int(inventory_line.split(":", 1)[1].strip())
 
-            # read transaction history
-            transaction_line = file.readline().strip()
+            # get latest transaction history
+            transaction_line = lines[-1]
             transaction_text = transaction_line.split(":", 1)[1].strip()
 
             if transaction_text:
@@ -85,10 +89,10 @@ def save_inventory(updated_inventory, transaction_history):
 
     timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    with open(INVENTORY_FILE, "w", encoding="utf-8") as file:
+    with open(INVENTORY_FILE, "a", encoding="utf-8") as file:
         file.write(f"--------- Inventory Report for {timestamp} ---------\n")
         file.write(f"Total Inventory: {updated_inventory}\n")
-        file.write(f"Transactions: {', '.join(str(value) for value in transaction_history)}\n")
+        file.write(f"Transactions: {', '.join(str(value) for value in transaction_history)}\n\n")
 
 # -----------------------------------
 # main
@@ -116,9 +120,6 @@ while True:
     # update valid transaction in history
     history.append(new_inventory)
 
-    # save inventory
-    save_inventory(inventory, history)
-
     # calculate tax for this delivery
     tax = calculate_tax(new_inventory)
     print(f"Tax for this delivery: {tax:.2f}\n")
@@ -126,6 +127,7 @@ while True:
     # check inventory for overstock (> 500)
     if inventory > 500:
         print("[WARNING] Total Inventory has exceeded 500 units.")
+        save_inventory(inventory, history)
         break
 
 # reporting
