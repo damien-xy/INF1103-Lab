@@ -1,6 +1,11 @@
 """ Lab 4 -  Persistent Modular Smart Inventory Auditor """
 
 # -----------------------------------
+# imports
+# -----------------------------------
+from datetime import datetime
+
+# -----------------------------------
 # functions
 # -----------------------------------
 def get_valid_input():
@@ -41,21 +46,57 @@ def generate_report(total_units, failed_attempts):
 
 def load_inventory():
     """ loads inventory from inventory.txt """
+    try:
+        with open("inventory.txt", "r", encoding="utf-8") as file:
+            # skip inventory report heading
+            file.readline()
+
+            # read total inventory
+            inventory_line = file.readline().strip()
+            inventory = int(inventory_line.split(":", 1)[1].strip())
+
+            # read transaction history
+            transaction_line = file.readline().strip()
+            transaction_text = transaction_line.split(":", 1)[1].strip()
+
+            if transaction_text:
+                transaction_history = [
+                    int(value.strip())
+                    for value in transaction_text.split(",")
+                ]
+            else:
+                transaction_history = []
+
+            return inventory, transaction_history
+
+    except FileNotFoundError:
+        # start with empty inventory if file does not exist
+        return 0, []
 
 def save_inventory(updated_inventory, transaction_history):
     """ saves inventory to inventory.txt"""
 
+    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    with open("inventory.txt", "w", encoding="utf-8") as file:
+        file.write(f"--------- Inventory Report for {timestamp} ---------\n")
+        file.write(f"Total Inventory: {updated_inventory}\n")
+        file.write(f"Transactions: {', '.join(str(value) for value in transaction_history)}\n")
+
 # -----------------------------------
 # main
 # -----------------------------------
-# initialise to 0
-inventory = 0
+# load inventory
+inventory, history = load_inventory()
+
+# initialise failed_entries to 0
 failed_entries = 0
 
 while True:
     new_inventory = get_valid_input()
 
     if new_inventory == "quit":
+        save_inventory(inventory, history)
         break
 
     if new_inventory is None:
@@ -64,6 +105,12 @@ while True:
 
     # update inventory
     inventory = process_delivery(inventory, new_inventory)
+
+    # update valid transaction in history
+    history.append(new_inventory)
+
+    # save inventory
+    save_inventory(inventory, history)
 
     # calculate tax for this delivery
     tax = calculate_tax(new_inventory)
