@@ -39,3 +39,21 @@ inventory = [
         "stock": 2
     }
 ]
+
+# -----------------------------------
+# functions
+# -----------------------------------
+def load_inventory():
+    """ loads inventory data from inventory.json """
+
+    if INVENTORY_FILE.exists():
+        with open(INVENTORY_FILE, "r", encoding="utf-8") as file:
+            inventory_data = json.load(file)
+
+        print("inventory.json found.")
+        print("Inventory loaded successfully.")
+        return inventory_data
+
+    print("inventory.json not found.")
+    return []
+
