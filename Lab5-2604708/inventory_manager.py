@@ -13,6 +13,66 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 INVENTORY_FILE = SCRIPT_DIR / "inventory.json"
 
 # -----------------------------------
+# input validation
+# -----------------------------------
+def get_valid_product_id():
+    """ gets and validates a product ID """
+
+    while True:
+        product_id = input("Product ID: ").strip().upper()
+
+        if (len(product_id) == 4 and product_id[0] == "P" and product_id[1:].isdigit()):
+            return product_id
+
+        print("[ERROR] Product ID must be in the format P001.")
+
+def get_valid_product_name():
+    """ gets, sanitises and validates a product name """
+
+    while True:
+        product_name = input("Product Name: ").strip()
+
+        # check that name is not empty and contains at least one letter
+        if product_name and any(char.isalpha() for char in product_name):
+            return product_name.title()
+
+        print("[ERROR] Product name must contain at least one letter.")
+
+def get_valid_price():
+    """ gets and validates a product price """
+
+    while True:
+        price_input = input("Price: ").strip()
+
+        try:
+            price = float(price_input)
+
+            if price >= 0:
+                return price
+
+            print("[ERROR] Price cannot be negative.")
+
+        except ValueError:
+            print("[ERROR] Price must be a valid number.")
+
+def get_valid_stock():
+    """ gets and validates a product stock quantity """
+
+    while True:
+        stock_input = input("Stock Quantity: ").strip()
+
+        try:
+            stock = int(stock_input)
+
+            if stock >= 0:
+                return stock
+
+            print("[ERROR] Stock quantity cannot be negative.")
+
+        except ValueError:
+            print("[ERROR] Stock quantity must be a whole number.")
+
+# -----------------------------------
 # functions
 # -----------------------------------
 def load_inventory():
@@ -25,9 +85,9 @@ def load_inventory():
         print("inventory.json found.")
         print("Inventory loaded successfully.")
         return inventory_data
-    else:
-        print("inventory.json not found.")
-        return []
+
+    print("inventory.json not found.")
+    return []
 
 def save_inventory(inventory):
     """ saves inventory data to inventory.json """
@@ -58,10 +118,10 @@ def add_product(inventory):
 
     print("\nAdd New Product")
 
-    product_id = input("Product ID: ").strip()
-    product_name = input("Product Name: ").strip()
-    price = float(input("Price: "))
-    stock = int(input("Stock Quantity: "))
+    product_id = get_valid_product_id()
+    product_name = get_valid_product_name()
+    price = get_valid_price()
+    stock = get_valid_stock()
 
     new_product = {
         "id": product_id,
