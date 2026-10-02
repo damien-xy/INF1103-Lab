@@ -118,7 +118,13 @@ def add_product(inventory):
 
     print("\nAdd New Product")
 
-    product_id = get_valid_product_id()
+    while True:
+        product_id = get_valid_product_id()
+
+        if any(product["id"] == product_id for product in inventory):
+            print("[ERROR] Product ID already exists.")
+        else:
+            break
     product_name = get_valid_product_name()
     price = get_valid_price()
     stock = get_valid_stock()
