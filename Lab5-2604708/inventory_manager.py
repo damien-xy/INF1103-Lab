@@ -15,11 +15,11 @@ INVENTORY_FILE = SCRIPT_DIR / "inventory.json"
 # -----------------------------------
 # input validation
 # -----------------------------------
-def get_valid_product_id():
+def get_valid_product_id(prompt="Product ID: "):
     """ gets and validates a product ID """
 
     while True:
-        product_id = input("Product ID: ").strip().upper()
+        product_id = input(prompt).strip().upper()
 
         if (len(product_id) == 4 and product_id[0] == "P" and product_id[1:].isdigit()):
             return product_id
@@ -145,7 +145,7 @@ def update_stock(inventory):
 
     print("\nUpdate Stock")
 
-    product_id = input("Enter Product ID: ").strip()
+    product_id = get_valid_product_id("Enter Product ID: ")
 
     for product in inventory:
         if product["id"] == product_id:
@@ -166,7 +166,7 @@ def search_product(inventory):
 
     print("\nSearch Product")
 
-    product_id = input("Enter Product ID: ").strip()
+    product_id = get_valid_product_id("Enter Product ID: ")
 
     for product in inventory:
         if product["id"] == product_id:
