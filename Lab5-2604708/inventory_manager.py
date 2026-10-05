@@ -55,11 +55,11 @@ def get_valid_price():
         except ValueError:
             print("[ERROR] Price must be a valid number.")
 
-def get_valid_stock():
+def get_valid_stock(prompt="Stock Quantity: "):
     """ gets and validates a product stock quantity """
 
     while True:
-        stock_input = input("Stock Quantity: ").strip()
+        stock_input = input(prompt).strip()
 
         try:
             stock = int(stock_input)
@@ -153,7 +153,7 @@ def update_stock(inventory):
             print(f"Name: {product['name']}")
             print(f"Current Stock: {product['stock']}")
 
-            new_stock = int(input("New Stock Quantity: "))
+            new_stock = get_valid_stock("New Stock Quantity: ")
             product["stock"] = new_stock
 
             print("Stock updated successfully!")
