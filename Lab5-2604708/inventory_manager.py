@@ -30,7 +30,7 @@ def get_valid_product_name():
     """ gets, sanitises and validates a product name """
 
     while True:
-        product_name = input("Product Name: ").strip()
+        product_name = " ".join(input("Product Name: ").split())
 
         # check that name is not empty and contains at least one letter
         if product_name and any(char.isalpha() for char in product_name):
