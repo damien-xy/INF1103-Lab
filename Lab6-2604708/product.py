@@ -37,6 +37,16 @@ class Product:
 
         return self.__product_id
 
+    def to_dict(self):
+        """ returns the product information as a dictionary """
+
+        return {
+            "id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "stock": self.__stock
+        }
+
 # -----------------------------------
 # testing
 # -----------------------------------
@@ -53,3 +63,7 @@ if __name__ == "__main__":
     # test invalid stock
     product1.update_stock(-5)
     product1.display_information()
+
+    # test converting product to dictionary
+    print("\nTesting to_dict():")
+    print(product1.to_dict())

@@ -41,6 +41,11 @@ class Inventory:
 
         print("------------------------------------------------")
 
+    def to_dict_list(self):
+        """ returns all products as a list of dictionaries """
+
+        return [product.to_dict() for product in self.__products]
+
 # -----------------------------------
 # testing
 # -----------------------------------
@@ -75,3 +80,7 @@ if __name__ == "__main__":
         product.display_information()
     else:
         print("Product not found.")
+
+    # test converting inventory to list of dictionaries
+    print("\nTesting to_dict_list():")
+    print(inventory.to_dict_list())
