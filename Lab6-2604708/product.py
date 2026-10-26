@@ -32,6 +32,11 @@ class Product:
             f"Stock: {self.__stock}"
         )
 
+    def get_product_id(self):
+        """ returns the product ID """
+
+        return self.__product_id
+
 # -----------------------------------
 # testing
 # -----------------------------------
