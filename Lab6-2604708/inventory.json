@@ -16,5 +16,11 @@
         "name": "Keyboard",
         "price": 299.0,
         "stock": 18
+    },
+    {
+        "id": "P004",
+        "name": "Iem",
+        "price": 50.0,
+        "stock": 40
     }
 ]
