@@ -1,6 +1,7 @@
 *.code-workspace
 *.txt
 *.zip
+*.pdf
 
 # except
 !Lab4-2604708/inventory.txt
