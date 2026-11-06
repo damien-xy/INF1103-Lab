@@ -1,0 +1,26 @@
+[
+    {
+        "id": "P004",
+        "name": "Monitor",
+        "price": 299.99,
+        "stock": 8,
+        "type": "physical",
+        "weight": 3.5
+    },
+    {
+        "id": "P005",
+        "name": "Antivirus Software",
+        "price": 49.9,
+        "stock": 20,
+        "type": "digital",
+        "download_size": 250.5
+    },
+    {
+        "id": "P111",
+        "name": "Wiwiwi",
+        "price": 20.0,
+        "stock": 10,
+        "type": "digital",
+        "download_size": 200.0
+    }
+]
