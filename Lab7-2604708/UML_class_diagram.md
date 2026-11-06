@@ -1,37 +1,62 @@
-# Lab 6 - UML Class Diagram
+# Lab 7 - UML Class Diagram
 
 ```mermaid
 classDiagram
-    direction LR
+    direction TB
 
     class Product {
+        <<abstract>>
         -__product_id: str
         -__name: str
         -__price: float
         -__stock: int
-
-        +#95;#95;init#95;#95;(product_id: str, name: str, price: float, stock: int)
         +update_stock(quantity: int) void
         +display_information() void
+        +get_fulfilment_info()* str
         +get_product_id() str
         +to_dict() dict
     }
 
     class Inventory {
-        -__products: list
-
-        +#95;#95;init#95;#95;()
+        -__products: list~Product~
         +add_product(product: Product) void
         +search_product(product_id: str) Optional~Product~
         +display_all() void
         +to_dict_list() list
     }
 
-    Inventory "1" o-- "*" Product : contains
+    class PhysicalProduct {
+        -__weight: float
+        +display_information() void
+        +get_fulfilment_info() str
+        +calculate_shipping_cost() float
+        +to_dict() dict
+    }
+
+    class DigitalProduct {
+        -__download_size: float
+        +display_information() void
+        +get_fulfilment_info() str
+        +to_dict() dict
+    }
+
+    class CanBeShipped {
+        <<interface>>
+        +calculate_shipping_cost()* float
+    }
+
+    Product <|-- PhysicalProduct
+    Product <|-- DigitalProduct
+
+    CanBeShipped <|.. PhysicalProduct
+
+    Inventory "1" o-- "0..*" Product
 ```
 
 ### Class Relationship
 
-The `Inventory` and `Product` classes have a **one-to-many aggregation relationship**, where one `Inventory` can contain zero or more (`*`) `Product` objects.
+- **Inheritance:** `PhysicalProduct` and `DigitalProduct` inherit from the abstract `Product` class.
+- **Interface Realisation:** `PhysicalProduct` implements `CanBeShipped` to calculate shipping costs.
+- **Aggregation:** One `Inventory` contains zero or more `Product` objects.
 
-This follows the **Single Responsibility Principle (SRP)**, as `Product` manages individual products while `Inventory` manages the collection.
+This design supports **Single Responsibility Principle (SRP)** by separating responsibilities and **Open Close Principle (OCP)** by allowing new product types without modifying the base `Product` class.
