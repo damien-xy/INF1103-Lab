@@ -1,4 +1,4 @@
-""" Lab 7 - Digital Product Class """
+""" Lab 7 - DigitalProduct Class """
 
 # -----------------------------------
 # imports
@@ -28,6 +28,15 @@ class DigitalProduct(Product):
 
         return "This product is delivered digitally."
 
+    def to_dict(self):
+        """ returns digital product information as a dictionary """
+
+        product_data = super().to_dict()
+        product_data["type"] = "digital"
+        product_data["download_size"] = self.__download_size
+
+        return product_data
+
 # -----------------------------------
 # testing
 # -----------------------------------
@@ -39,3 +48,7 @@ if __name__ == "__main__":
 
     # test getting physical product fulfilment information
     print(product1.get_fulfilment_info())
+
+    # test converting digital product to dictionary
+    print("\nTesting to_dict():")
+    print(product1.to_dict())

@@ -35,6 +35,15 @@ class PhysicalProduct(Product, CanBeShipped):
 
         return self.__weight * 2.00
 
+    def to_dict(self):
+        """ returns physical product information as a dictionary """
+
+        product_data = super().to_dict()
+        product_data["type"] = "physical"
+        product_data["weight"] = self.__weight
+
+        return product_data
+
 # -----------------------------------
 # testing
 # -----------------------------------
@@ -51,3 +60,7 @@ if __name__ == "__main__":
     # test shipping cost calculation with different weights
     print(f"\nProduct 1 Shipping Cost: ${product1.calculate_shipping_cost():.2f}")
     print(f"Product 2 Shipping Cost: ${product2.calculate_shipping_cost():.2f}")
+
+    # test converting physical product to dictionary
+    print("\nTesting to_dict():")
+    print(product1.to_dict())
