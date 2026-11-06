@@ -3,7 +3,8 @@
 # -----------------------------------
 # imports
 # -----------------------------------
-from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 
 # -----------------------------------
 # classes
@@ -52,9 +53,9 @@ class Inventory:
 if __name__ == "__main__":
     inventory = Inventory()
 
-    # create product objects
-    product1 = Product("P004", "Monitor", 299.99, 5)
-    product2 = Product("P005", "Keyboard", 49.90, 20)
+    # create physical and digital product objects
+    product1 = PhysicalProduct("P004", "Monitor", 299.99, 5, 3.5)
+    product2 = DigitalProduct("P005", "Antivirus Software", 49.90, 20, 250.5)
 
     # test adding products
     inventory.add_product(product1)
