@@ -1,9 +1,14 @@
-""" Lab 6 - Product Class """
+""" Lab 7 - Product Class """
+
+# -----------------------------------
+# imports
+# -----------------------------------
+from abc import ABC, abstractmethod
 
 # -----------------------------------
 # classes
 # -----------------------------------
-class Product:
+class Product(ABC):
     """ represents and manages an individual product """
 
     def __init__(self, product_id, name, price, stock):
@@ -32,6 +37,10 @@ class Product:
             f"Stock: {self.__stock}"
         )
 
+    @abstractmethod
+    def get_fulfilment_info(self):
+        """ returns information about how the product is fulfilled """
+
     def get_product_id(self):
         """ returns the product ID """
 
@@ -51,19 +60,8 @@ class Product:
 # testing
 # -----------------------------------
 if __name__ == "__main__":
-    product1 = Product("P004", "Monitor", 299.99, 5)
-
-    # test displaying product information
-    product1.display_information()
-
-    # test updating stock
-    product1.update_stock(10)
-    product1.display_information()
-
-    # test invalid stock
-    product1.update_stock(-5)
-    product1.display_information()
-
-    # test converting product to dictionary
-    print("\nTesting to_dict():")
-    print(product1.to_dict())
+    # test instantiating the abstract Product class
+    try:
+        product1 = Product("P004", "Monitor", 299.99, 5)
+    except TypeError as error:
+        print(f"[EXPECTED ERROR] {error}")

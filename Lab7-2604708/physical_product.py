@@ -24,6 +24,11 @@ class PhysicalProduct(Product):
         super().display_information()
         print(f"Weight: {self.__weight:.2f} kg")
 
+    def get_fulfilment_info(self):
+        """ returns physical product fulfilment information """
+
+        return "This product requires physical shipping."
+
 # -----------------------------------
 # testing
 # -----------------------------------
@@ -32,3 +37,6 @@ if __name__ == "__main__":
 
     # test displaying physical product information
     product1.display_information()
+
+    # test getting physical product fulfilment information
+    print(product1.get_fulfilment_info())
