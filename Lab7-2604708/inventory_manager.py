@@ -1,4 +1,4 @@
-""" Lab 6 - OOP Inventory Management System """
+""" Lab 7 - OOP Inventory Management System """
 
 # -----------------------------------
 # imports
@@ -6,8 +6,9 @@
 import json
 from pathlib import Path
 
-from product import Product
 from inventory import Inventory
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 
 # -----------------------------------
 # file paths
@@ -75,6 +76,23 @@ def get_valid_stock(prompt="Stock Quantity: "):
         except ValueError:
             print("[ERROR] Stock quantity must be a whole number.")
 
+def get_valid_non_negative_float(prompt):
+    """ gets and validates a non-negative decimal number """
+
+    while True:
+        value_input = input(prompt).strip()
+
+        try:
+            value = float(value_input)
+
+            if 0 <= value < float("inf"):
+                return value
+
+            print("[ERROR] Value must be a non-negative number.")
+
+        except ValueError:
+            print("[ERROR] Please enter a valid number.")
+
 # -----------------------------------
 # functions
 # -----------------------------------
@@ -88,12 +106,29 @@ def load_inventory():
             inventory_data = json.load(file)
 
         for product_data in inventory_data:
-            product = Product(
-                product_data["id"],
-                product_data["name"],
-                product_data["price"],
-                product_data["stock"]
-            )
+            product_type = product_data["type"]
+
+            if product_type == "physical":
+                product = PhysicalProduct(
+                    product_data["id"],
+                    product_data["name"],
+                    product_data["price"],
+                    product_data["stock"],
+                    product_data["weight"]
+                )
+
+            elif product_type == "digital":
+                product = DigitalProduct(
+                    product_data["id"],
+                    product_data["name"],
+                    product_data["price"],
+                    product_data["stock"],
+                    product_data["download_size"]
+                )
+
+            else:
+                print(f"[WARNING] Unknown product type: {product_type}")
+                continue
 
             inventory.add_product(product)
 
@@ -119,10 +154,22 @@ def save_inventory(inventory):
     print("Inventory saved successfully to inventory.json.")
 
 def add_product(inventory):
-    """ adds a new product to the inventory """
+    """ adds a new physical or digital product to the inventory """
 
     print("\nAdd New Product")
+    print("1. Physical Product")
+    print("2. Digital Product")
 
+    # get product type
+    while True:
+        product_type = input("Select Product Type: ").strip()
+
+        if product_type in ("1", "2"):
+            break
+
+        print("[ERROR] Please select 1 or 2.")
+
+    # get unique product ID
     while True:
         product_id = get_valid_product_id()
 
@@ -131,11 +178,25 @@ def add_product(inventory):
         else:
             break
 
+    # get common product information
     product_name = get_valid_product_name()
     price = get_valid_price()
     stock = get_valid_stock()
 
-    new_product = Product(product_id, product_name, price, stock)
+    # create the appropriate product type
+    if product_type == "1":
+        weight = get_valid_non_negative_float("Weight (kg): ")
+
+        new_product = PhysicalProduct(
+            product_id, product_name, price, stock, weight
+        )
+
+    else:
+        download_size = get_valid_non_negative_float("Download Size (MB): ")
+
+        new_product = DigitalProduct(
+            product_id, product_name, price, stock, download_size
+        )
 
     inventory.add_product(new_product)
 

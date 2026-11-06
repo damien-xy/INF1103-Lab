@@ -1,4 +1,4 @@
-""" Lab 6 - Inventory Class """
+""" Lab 7 - Inventory Class """
 
 # -----------------------------------
 # imports
