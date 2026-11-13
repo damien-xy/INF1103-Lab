@@ -94,3 +94,8 @@ classDiagram
 - **Composition:** An `Order` creates and owns its `OrderLine` objects, whose lifecycle is tied to the order.
 
 This design supports the **Single Responsibility Principle (SRP)** by separating responsibilities, the **Open/Closed Principle (OCP)** by allowing new product types without modifying the base `Product` class, and the **Liskov Substitution Principle (LSP)** by allowing subclasses to be used through the common `Product` abstraction.
+
+### AI Use Review
+
+- **Accepted:** I accepted the suggestion to represent the relationship between `Supplier` and `Product` as association because neither object owns the other, and both can exist independently.
+- **Changed:** I updated the aggregation multiplicity between `Inventory` and `Product` from `1` to `0..1` at the Inventory end after reviewing the lab sheet, as a Product can exist without belonging to an Inventory.
