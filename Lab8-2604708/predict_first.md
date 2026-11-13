@@ -24,3 +24,11 @@ using is or id()).
 |---|---|
 | **Prediction** | I predict that there will be 2 OrderLine objects and 1 Product object because each Order creates its own OrderLine, while both OrderLines reference the same Product object, which exists independently of the Orders. |
 | **Actual Result** | The test confirmed that 2 OrderLine objects and 1 Product object were created. Each Order created its own OrderLine, while both OrderLines referenced the same Product object. The output matched my prediction. |
+
+## Section 7.2 - Demonstrate polymorphism
+Before running your test, write down what each product will print for get_fulfilment_info(). Then compare with the actual output.
+
+| Section | Response |
+|---|---|
+| **Prediction** | I predict that both products will display their respective fulfilment information because `PhysicalProduct` and `DigitalProduct` have their own implementations of `get_fulfilment_info()`. |
+| **Actual Result** | |
