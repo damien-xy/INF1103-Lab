@@ -6,6 +6,7 @@
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from supplier import Supplier
+from product import Product
 
 # -----------------------------------
 # classes
@@ -13,24 +14,37 @@ from supplier import Supplier
 class Inventory:
     """ manages a collection of Product objects """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """ initialises an empty inventory """
 
-        self.__products = []
+        self.__products: list[Product] = []
 
-    def add_product(self, product):
+    def add_product(self, product: Product) -> None:
         """ adds a Product object to the inventory """
 
         self.__products.append(product)
 
-    def search_product(self, product_id):
-        """ searches for a product by its ID """
+    def remove_product(self, product_id: str) -> None:
+        """ removes a Product reference from the inventory """
+
+        for product in self.__products:
+            if product.get_product_id() == product_id:
+                self.__products.remove(product)
+                return
+
+    def find_product(self, product_id: str) -> Product | None:
+        """ finds a product by its ID """
 
         for product in self.__products:
             if product.get_product_id() == product_id:
                 return product
 
         return None
+
+    def search_product(self, product_id: str) -> Product | None:
+        """ searches for a product using find_product() """
+
+        return self.find_product(product_id)
 
     def display_all(self):
         """ displays all products in the inventory """
