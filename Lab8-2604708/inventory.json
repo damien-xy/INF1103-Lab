@@ -1,0 +1,15 @@
+[
+    {
+        "id": "P004",
+        "name": "Monitor",
+        "price": 299.99,
+        "stock": 5,
+        "supplier": {
+            "supplier_id": "S001",
+            "name": "Tech Supplies Pte Ltd",
+            "contact_email": "contact@techsupplies.com"
+        },
+        "type": "physical",
+        "weight": 3.5
+    }
+]
