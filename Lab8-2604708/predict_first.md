@@ -14,4 +14,4 @@ Before step 3, write down whether you expect the Product to still work after it 
 | Section | Response |
 |---|---|
 | **Prediction** | I predict that the Product object will no longer work after being removed from Inventory A because it has been removed from the inventory's collection of products. |
-| **Actual Result** | |
+| **Actual Result** | The Product object could still display its information after being removed from Inventory A and was successfully added to Inventory B. This differed from my prediction because removing a product from an inventory only removes its reference from the inventory's collection, not the actual object. The Product object still exists because `product1` holds a reference to it. |
