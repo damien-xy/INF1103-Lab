@@ -1,11 +1,11 @@
-
-""" Lab 7 - PhysicalProduct Class """
+""" Lab 8 - PhysicalProduct Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
 from product import Product
 from can_be_shipped import CanBeShipped
+from supplier import Supplier
 
 # -----------------------------------
 # classes
@@ -13,10 +13,10 @@ from can_be_shipped import CanBeShipped
 class PhysicalProduct(Product, CanBeShipped):
     """ represents a physical product with weight """
 
-    def __init__(self, product_id, name, price, stock, weight):
-        """ initialises a physical product with its weight """
+    def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, supplier: Supplier) -> None:
+        """ initialises a physical product with its weight and supplier """
 
-        super().__init__(product_id, name, price, stock)
+        super().__init__(product_id, name, price, stock, supplier)
         self.__weight = weight
 
     def display_information(self):

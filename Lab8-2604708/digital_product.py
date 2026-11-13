@@ -1,9 +1,10 @@
-""" Lab 7 - DigitalProduct Class """
+""" Lab 8 - DigitalProduct Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
 from product import Product
+from supplier import Supplier
 
 # -----------------------------------
 # classes
@@ -11,10 +12,10 @@ from product import Product
 class DigitalProduct(Product):
     """ represents a digital product with download size """
 
-    def __init__(self, product_id, name, price, stock, download_size):
-        """ initialises a digital product with its download size """
+    def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float, supplier: Supplier) -> None:
+        """ initialises a digital product with its download size and supplier """
 
-        super().__init__(product_id, name, price, stock)
+        super().__init__(product_id, name, price, stock, supplier)
         self.__download_size = download_size
 
     def display_information(self):

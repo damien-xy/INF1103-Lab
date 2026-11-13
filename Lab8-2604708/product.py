@@ -1,9 +1,10 @@
-""" Lab 7 - Product Class """
+""" Lab 8 - Product Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
 from abc import ABC, abstractmethod
+from supplier import Supplier
 
 # -----------------------------------
 # classes
@@ -11,13 +12,14 @@ from abc import ABC, abstractmethod
 class Product(ABC):
     """ represents and manages an individual product """
 
-    def __init__(self, product_id, name, price, stock):
-        """ initialises a product with its ID, name, price and stock """
+    def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier) -> None:
+        """ initialises a product with its ID, name, price, stock and supplier """
 
         self.__product_id = product_id
         self.__name = name
         self.__price = price
         self.__stock = stock
+        self.__supplier: Supplier = supplier
 
     def update_stock(self, quantity):
         """ updates the product's stock quantity """
@@ -36,6 +38,11 @@ class Product(ABC):
             f"Price: ${self.__price:.2f} | "
             f"Stock: {self.__stock}"
         )
+
+    def display_supplier_information(self) -> None:
+        """ displays the product's supplier information """
+
+        self.__supplier.display_information()
 
     @abstractmethod
     def get_fulfilment_info(self):
