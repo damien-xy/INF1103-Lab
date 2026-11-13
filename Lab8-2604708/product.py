@@ -53,6 +53,11 @@ class Product(ABC):
 
         return self.__product_id
 
+    def get_price(self) -> float:
+        """ returns the product price """
+
+        return self.__price
+
     def to_dict(self) -> dict:
         """ returns the product information as a dictionary """
 
