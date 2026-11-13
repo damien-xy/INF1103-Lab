@@ -16,20 +16,20 @@ class DigitalProduct(Product):
         """ initialises a digital product with its download size and supplier """
 
         super().__init__(product_id, name, price, stock, supplier)
-        self.__download_size = download_size
+        self.__download_size: float = download_size
 
-    def display_information(self):
+    def display_information(self) -> None:
         """ displays product information including download size """
 
         super().display_information()
         print(f"Download Size: {self.__download_size:.2f} MB")
 
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         """ returns digital product fulfilment information """
 
         return "This product is delivered digitally."
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         """ returns digital product information as a dictionary """
 
         product_data = super().to_dict()

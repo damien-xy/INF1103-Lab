@@ -20,7 +20,7 @@ INVENTORY_FILE = SCRIPT_DIR / "inventory.json"
 # -----------------------------------
 # input validation
 # -----------------------------------
-def get_valid_product_id(prompt="Product ID: "):
+def get_valid_product_id(prompt: str = "Product ID: ") -> str:
     """ gets and validates a product ID """
 
     while True:
@@ -31,7 +31,7 @@ def get_valid_product_id(prompt="Product ID: "):
 
         print("[ERROR] Product ID must be in the format P001.")
 
-def get_valid_product_name():
+def get_valid_product_name() -> str:
     """ gets, sanitises and validates a product name """
 
     while True:
@@ -43,7 +43,7 @@ def get_valid_product_name():
 
         print("[ERROR] Product name must contain at least one letter.")
 
-def get_valid_price():
+def get_valid_price() -> float:
     """ gets and validates a product price """
 
     while True:
@@ -60,7 +60,7 @@ def get_valid_price():
         except ValueError:
             print("[ERROR] Price must be a valid number.")
 
-def get_valid_stock(prompt="Stock Quantity: "):
+def get_valid_stock(prompt: str = "Stock Quantity: ") -> int:
     """ gets and validates a product stock quantity """
 
     while True:
@@ -77,7 +77,7 @@ def get_valid_stock(prompt="Stock Quantity: "):
         except ValueError:
             print("[ERROR] Stock quantity must be a whole number.")
 
-def get_valid_non_negative_float(prompt):
+def get_valid_non_negative_float(prompt: str) -> float:
     """ gets and validates a non-negative decimal number """
 
     while True:
@@ -97,7 +97,7 @@ def get_valid_non_negative_float(prompt):
 # -----------------------------------
 # functions
 # -----------------------------------
-def load_inventory():
+def load_inventory() -> Inventory:
     """ loads inventory data from inventory.json into an Inventory object """
 
     inventory = Inventory()
@@ -155,7 +155,7 @@ def load_inventory():
 
     return inventory
 
-def save_inventory(inventory):
+def save_inventory(inventory: Inventory) -> None:
     """ saves inventory data to inventory.json """
 
     inventory_data = inventory.to_dict_list()
@@ -165,7 +165,7 @@ def save_inventory(inventory):
 
     print("Inventory saved successfully to inventory.json.")
 
-def add_product(inventory):
+def add_product(inventory: Inventory) -> None:
     """ adds a new physical or digital product to the inventory """
 
     print("\nAdd New Product")
@@ -223,7 +223,7 @@ def add_product(inventory):
 
     print("Product added successfully!")
 
-def update_stock(inventory):
+def update_stock(inventory: Inventory) -> None:
     """ updates the stock quantity of an existing product """
 
     print("\nUpdate Stock")
@@ -244,7 +244,7 @@ def update_stock(inventory):
     else:
         print("Product not found.")
 
-def search_product(inventory):
+def search_product(inventory: Inventory) -> None:
     """ searches for a product by product ID """
 
     print("\nSearch Product")
@@ -262,7 +262,7 @@ def search_product(inventory):
     else:
         print("Product not found.")
 
-def display_menu():
+def display_menu() -> None:
     """ displays the inventory management menu """
 
     print("\n----------- MENU -----------")
@@ -277,7 +277,7 @@ def display_menu():
 # -----------------------------------
 # main
 # -----------------------------------
-def main():
+def main() -> None:
     """ runs the inventory management system """
 
     inventory = load_inventory()

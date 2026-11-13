@@ -12,5 +12,5 @@ class CanBeShipped(ABC):
     """ defines the interface for objects that can be shipped """
 
     @abstractmethod
-    def calculate_shipping_cost(self):
+    def calculate_shipping_cost(self) -> float:
         """ calculates and returns the shipping cost """

@@ -1,4 +1,4 @@
-""" Lab 7 - Inventory Class """
+""" Lab 8 - Inventory Class """
 
 # -----------------------------------
 # imports
@@ -46,7 +46,7 @@ class Inventory:
 
         return self.find_product(product_id)
 
-    def display_all(self):
+    def display_all(self) -> None:
         """ displays all products in the inventory """
 
         print("\nCurrent Inventory")
@@ -57,7 +57,7 @@ class Inventory:
 
         print("------------------------------------------------")
 
-    def to_dict_list(self):
+    def to_dict_list(self) -> list[dict]:
         """ returns all products as a list of dictionaries """
 
         return [product.to_dict() for product in self.__products]

@@ -15,13 +15,13 @@ class Product(ABC):
     def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier) -> None:
         """ initialises a product with its ID, name, price, stock and supplier """
 
-        self.__product_id = product_id
-        self.__name = name
-        self.__price = price
-        self.__stock = stock
+        self.__product_id: str = product_id
+        self.__name: str = name
+        self.__price: float = price
+        self.__stock: int = stock
         self.__supplier: Supplier = supplier
 
-    def update_stock(self, quantity):
+    def update_stock(self, quantity: int) -> None:
         """ updates the product's stock quantity """
 
         if isinstance(quantity, int) and quantity >= 0:
@@ -29,7 +29,7 @@ class Product(ABC):
         else:
             print("[ERROR] Stock quantity must be a non-negative integer.")
 
-    def display_information(self):
+    def display_information(self) -> None:
         """ displays the product's information """
 
         print(
@@ -45,10 +45,10 @@ class Product(ABC):
         self.__supplier.display_information()
 
     @abstractmethod
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         """ returns information about how the product is fulfilled """
 
-    def get_product_id(self):
+    def get_product_id(self) -> str:
         """ returns the product ID """
 
         return self.__product_id
