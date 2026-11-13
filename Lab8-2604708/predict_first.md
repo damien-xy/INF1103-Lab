@@ -6,4 +6,4 @@ Before you run this test, write down what you expect to happen if you delete you
 | Section | Response |
 |---|---|
 | **Prediction** | I predict that both products will still be able to display their supplier information because they were created before the `supplier` variable was deleted. Each product already stores a reference to the Supplier object, so deleting the original variable should not affect their access to it. |
-| **Actual Result** |  |
+| **Actual Result** | Both the physical and digital products were still able to display their supplier information after the `supplier` variable was deleted. The output matched my prediction. |
