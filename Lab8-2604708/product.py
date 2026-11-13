@@ -53,22 +53,25 @@ class Product(ABC):
 
         return self.__product_id
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         """ returns the product information as a dictionary """
 
         return {
             "id": self.__product_id,
             "name": self.__name,
             "price": self.__price,
-            "stock": self.__stock
+            "stock": self.__stock,
+            "supplier": self.__supplier.to_dict()
         }
 
 # -----------------------------------
 # testing
 # -----------------------------------
 if __name__ == "__main__":
+    supplier = Supplier("S001", "Tech Supplies Pte Ltd", "contact@techsupplies.com")
+
     # test instantiating the abstract Product class
     try:
-        product1 = Product("P004", "Monitor", 299.99, 5)
+        product1 = Product("P004", "Monitor", 299.99, 5, supplier)
     except TypeError as error:
         print(f"[EXPECTED ERROR] {error}")

@@ -5,6 +5,7 @@
 # -----------------------------------
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
+from supplier import Supplier
 
 # -----------------------------------
 # classes
@@ -53,9 +54,12 @@ class Inventory:
 if __name__ == "__main__":
     inventory = Inventory()
 
+    # create supplier
+    supplier = Supplier("S001", "Tech Supplies Pte Ltd", "contact@techsupplies.com")
+
     # create physical and digital product objects
-    product1 = PhysicalProduct("P004", "Monitor", 299.99, 5, 3.5)
-    product2 = DigitalProduct("P005", "Antivirus Software", 49.90, 20, 250.5)
+    product1 = PhysicalProduct("P004", "Monitor", 299.99, 5, 3.5, supplier)
+    product2 = DigitalProduct("P005", "Antivirus Software", 49.90, 20, 250.5, supplier)
 
     # test adding products
     inventory.add_product(product1)

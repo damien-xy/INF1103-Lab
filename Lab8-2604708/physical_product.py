@@ -48,8 +48,10 @@ class PhysicalProduct(Product, CanBeShipped):
 # testing
 # -----------------------------------
 if __name__ == "__main__":
-    product1 = PhysicalProduct("P004", "Monitor", 299.99, 5, 3.5)
-    product2 = PhysicalProduct("P006", "Laptop", 1299.99, 10, 1.5)
+    supplier = Supplier("S001", "Tech Supplies Pte Ltd", "contact@techsupplies.com")
+
+    product1 = PhysicalProduct("P004", "Monitor", 299.99, 5, 3.5, supplier)
+    product2 = PhysicalProduct("P006", "Laptop", 1299.99, 10, 1.5, supplier)
 
     # test displaying physical product information
     product1.display_information()

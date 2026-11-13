@@ -42,7 +42,9 @@ class DigitalProduct(Product):
 # testing
 # -----------------------------------
 if __name__ == "__main__":
-    product1 = DigitalProduct("P005", "Antivirus Software", 49.90, 20, 250.5)
+    supplier = Supplier("S001", "Tech Supplies Pte Ltd", "contact@techsupplies.com")
+
+    product1 = DigitalProduct("P005", "Antivirus Software", 49.90, 20, 250.5, supplier)
 
     # test displaying digital product information
     product1.display_information()

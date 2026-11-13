@@ -1,4 +1,4 @@
-""" Lab 7 - OOP Inventory Management System """
+""" Lab 8 - OOP Inventory Management System """
 
 # -----------------------------------
 # imports
@@ -9,6 +9,7 @@ from pathlib import Path
 from inventory import Inventory
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
+from supplier import Supplier
 
 # -----------------------------------
 # file paths
@@ -108,13 +109,23 @@ def load_inventory():
         for product_data in inventory_data:
             product_type = product_data["type"]
 
+            # reconstruct supplier object
+            supplier_data = product_data["supplier"]
+
+            supplier = Supplier(
+                supplier_data["supplier_id"],
+                supplier_data["name"],
+                supplier_data["contact_email"]
+            )
+
             if product_type == "physical":
                 product = PhysicalProduct(
                     product_data["id"],
                     product_data["name"],
                     product_data["price"],
                     product_data["stock"],
-                    product_data["weight"]
+                    product_data["weight"],
+                    supplier
                 )
 
             elif product_type == "digital":
@@ -123,7 +134,8 @@ def load_inventory():
                     product_data["name"],
                     product_data["price"],
                     product_data["stock"],
-                    product_data["download_size"]
+                    product_data["download_size"],
+                    supplier
                 )
 
             else:
@@ -183,19 +195,28 @@ def add_product(inventory):
     price = get_valid_price()
     stock = get_valid_stock()
 
+    # get supplier information
+    print("\nSupplier Information")
+
+    supplier_id = input("Supplier ID: ").strip().upper()
+    supplier_name = " ".join(input("Supplier Name: ").split()).title()
+    supplier_email = input("Supplier Email: ").strip()
+
+    supplier = Supplier(supplier_id, supplier_name, supplier_email)
+
     # create the appropriate product type
     if product_type == "1":
         weight = get_valid_non_negative_float("Weight (kg): ")
 
         new_product = PhysicalProduct(
-            product_id, product_name, price, stock, weight
+            product_id, product_name, price, stock, weight, supplier
         )
 
     else:
         download_size = get_valid_non_negative_float("Download Size (MB): ")
 
         new_product = DigitalProduct(
-            product_id, product_name, price, stock, download_size
+            product_id, product_name, price, stock, download_size, supplier
         )
 
     inventory.add_product(new_product)
