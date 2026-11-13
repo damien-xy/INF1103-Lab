@@ -33,6 +33,7 @@ classDiagram
         +add_product(product: Product) void
         +remove_product(product_id: str) void
         +find_product(product_id: str) Optional~Product~
+        +get_products() list~Product~
         +search_product(product_id: str) Optional~Product~
         +display_all() void
         +to_dict_list() list~dict~

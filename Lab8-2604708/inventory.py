@@ -41,6 +41,11 @@ class Inventory:
 
         return None
 
+    def get_products(self) -> list[Product]:
+        """ returns a list of products in the inventory """
+
+        return self.__products.copy()
+
     def search_product(self, product_id: str) -> Product | None:
         """ searches for a product using find_product() """
 

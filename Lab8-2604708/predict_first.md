@@ -31,4 +31,4 @@ Before running your test, write down what each product will print for get_fulfil
 | Section | Response |
 |---|---|
 | **Prediction** | I predict that both products will display their respective fulfilment information because `PhysicalProduct` and `DigitalProduct` have their own implementations of `get_fulfilment_info()`. |
-| **Actual Result** | |
+| **Actual Result** | Both products displayed their respective fulfilment information. `PhysicalProduct` indicated that physical shipping was required, while `DigitalProduct` indicated that it was delivered digitally. The output matched my prediction. |
