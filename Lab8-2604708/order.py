@@ -28,3 +28,12 @@ class Order:
         """ calculates the total value of the order """
 
         return sum(order_line.calculate_subtotal() for order_line in self.__order_lines)
+
+    def display_order_lines(self) -> None:
+        """ displays all order lines in the order """
+
+        print(f"\nOrder ID: {self.__order_id}")
+
+        for index, order_line in enumerate(self.__order_lines, start=1):
+            print(f"\nOrder Line {index}:")
+            order_line.display_information()

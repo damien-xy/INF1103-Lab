@@ -23,4 +23,4 @@ using is or id()).
 | Section | Response |
 |---|---|
 | **Prediction** | I predict that there will be 2 OrderLine objects and 1 Product object because each Order creates its own OrderLine, while both OrderLines reference the same Product object, which exists independently of the Orders. |
-| **Actual Result** | |
+| **Actual Result** | The test confirmed that 2 OrderLine objects and 1 Product object were created. Each Order created its own OrderLine, while both OrderLines referenced the same Product object. The output matched my prediction. |

@@ -21,3 +21,10 @@ class OrderLine:
         """ calculates the subtotal for the order line """
 
         return self.__product.get_price() * self.__quantity
+
+    def display_information(self) -> None:
+        """ displays the order line information """
+
+        self.__product.display_information()
+        print(f"Quantity Ordered: {self.__quantity}")
+        print(f"Subtotal: ${self.calculate_subtotal():.2f}")
