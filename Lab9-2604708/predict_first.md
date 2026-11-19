@@ -14,3 +14,7 @@ Create an order whose lines add up to 250. What will calculate_total() return wi
 |  | BulkDiscount(200, 20) | set_discount(PercentageDiscount(10)) |
 |---|---|---|
 | **Prediction** | 230 | 207 |
+| **Actual Result** | 230 | 225 |
+
+**Notes:**
+- My BulkDiscount prediction was correct, but the PercentageDiscount prediction was incorrect because `set_discount()` replaces the previous discount strategy rather than applying an additional discount. The 10% discount is calculated from the original total of 250, resulting in 225 instead of 207.
