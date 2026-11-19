@@ -1,11 +1,11 @@
-""" Lab 8 - PhysicalProduct Class """
+""" Lab 9 - PhysicalProduct Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
-from product import Product
-from can_be_shipped import CanBeShipped
-from supplier import Supplier
+from .product import Product
+from .can_be_shipped import CanBeShipped
+from .supplier import Supplier
 
 # -----------------------------------
 # classes

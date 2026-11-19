@@ -1,10 +1,10 @@
-""" Lab 8 - Product Class """
+""" Lab 9 - Product Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
 from abc import ABC, abstractmethod
-from supplier import Supplier
+from .supplier import Supplier
 
 # -----------------------------------
 # classes

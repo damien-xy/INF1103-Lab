@@ -1,10 +1,10 @@
-""" Lab 8 - Order Class """
+""" Lab 9 - Order Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
-from product import Product
-from order_line import OrderLine
+from .product import Product
+from .order_line import OrderLine
 
 # -----------------------------------
 # classes

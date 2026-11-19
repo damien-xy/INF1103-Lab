@@ -1,9 +1,9 @@
-""" Lab 8 - OrderLine Class """
+""" Lab 9 - OrderLine Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
-from product import Product
+from .product import Product
 
 # -----------------------------------
 # classes

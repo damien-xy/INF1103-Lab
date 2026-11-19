@@ -1,12 +1,12 @@
-""" Lab 8 - Inventory Class """
+""" Lab 9 - Inventory Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
-from supplier import Supplier
-from product import Product
+from .physical_product import PhysicalProduct
+from .digital_product import DigitalProduct
+from .supplier import Supplier
+from .product import Product
 
 # -----------------------------------
 # classes

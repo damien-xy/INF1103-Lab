@@ -1,4 +1,4 @@
-""" Lab 8 - OOP Inventory Management System """
+""" Lab 9 - OOP Inventory Management System """
 
 # -----------------------------------
 # imports
@@ -6,10 +6,10 @@
 import json
 from pathlib import Path
 
-from inventory import Inventory
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
-from supplier import Supplier
+from classes.inventory import Inventory
+from classes.physical_product import PhysicalProduct
+from classes.digital_product import DigitalProduct
+from classes.supplier import Supplier
 
 # -----------------------------------
 # file paths

@@ -1,10 +1,10 @@
-""" Lab 8 - DigitalProduct Class """
+""" Lab 9 - DigitalProduct Class """
 
 # -----------------------------------
 # imports
 # -----------------------------------
-from product import Product
-from supplier import Supplier
+from .product import Product
+from .supplier import Supplier
 
 # -----------------------------------
 # classes
