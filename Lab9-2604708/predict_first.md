@@ -8,3 +8,9 @@ The business now wants a 5% student discount. Without the Strategy pattern, whic
 | Section | Response |
 |---|---|
 | **Prediction** | The `Order` class and its `calculate_total()` method must be modified to include the new student discount. |
+
+### Section 2.3 - Use a strategy in Order
+Create an order whose lines add up to 250. What will calculate_total() return with BulkDiscount(200, 20)? What if you then call set_discount(PercentageDiscount(10)) on the same order? Write both answers down, then run your code and check.
+|  | BulkDiscount(200, 20) | set_discount(PercentageDiscount(10)) |
+|---|---|---|
+| **Prediction** | 230 | 207 |
