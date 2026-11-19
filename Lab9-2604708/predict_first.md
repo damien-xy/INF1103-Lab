@@ -36,4 +36,4 @@ WWhat happens if you call `ProductFactory.create("service", ...)`? Which line ra
 |  | Response |
 |---|---|
 | **Prediction** | Since `"service"` does not match `"physical"` or `"digital"`, the `else` block raises a `ValueError` at `raise ValueError(f"Unknown product type: {product_type}")`. If the exception is not caught, the program terminates with an error. |
-| **Actual Result** |  |
+| **Actual Result** | Same as prediction. Line 27 raised a `ValueError` with the message `Unknown product type: service`, and the program terminated with a traceback because the exception was not caught. |
