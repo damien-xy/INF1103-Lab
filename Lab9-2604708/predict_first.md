@@ -8,6 +8,7 @@ The business now wants a 5% student discount. Without the Strategy pattern, whic
 |  | Response |
 |---|---|
 | **Prediction** | The `Order` class and its `calculate_total()` method must be modified to include the new student discount. |
+| **After implementing Strategy** | Only a new `StudentDiscount` class was needed, inheriting from `DiscountStrategy` and implementing `apply()`. The `Order` class and its `calculate_total()` method did not need to be modified, following the Open/Closed Principle (OCP). |
 
 ### Section 2.3 - Use a strategy in Order
 Create an order whose lines add up to 250. What will calculate_total() return with BulkDiscount(200, 20)? What if you then call set_discount(PercentageDiscount(10)) on the same order? Write both answers down, then run your code and check.
@@ -26,4 +27,4 @@ Look back at Lab 8. Which relationship best describes Order and DiscountStrategy
 |  | Response |
 |---|---|
 | **Prediction** | Association. An `Order` uses one `DiscountStrategy` at a time, while a `DiscountStrategy` can be shared by multiple orders. The multiplicities are 1 at the `DiscountStrategy` end and 0..* at the `Order` end. |
-| **Actual Result** |  |
+| **Actual Result** | Same as prediction. Both orders successfully shared the same `StudentDiscount` object, confirming the association relationship. |
