@@ -50,3 +50,4 @@ Suppose a new BundleProduct type is added. How many places in your code would ne
 - This is acceptable because product creation is centralised in one place, reducing coupling and improving maintainability.
 
 **Actual Result:**
+- Same as prediction. Product creation logic previously existed in 2 functions but is now centralised in 1 method, `ProductFactory.create()`.
