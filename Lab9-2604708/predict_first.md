@@ -59,3 +59,13 @@ Think back to the Lab 8 LSP discussion. If Product validates that stock cannot g
 |---|---|
 | **Prediction** | No. `DigitalProduct` should follow the same stock validation rules as `Product`. Allowing negative stock would violate LSP, as subclasses should maintain the expected behaviour of their parent class. |
 | **Actual Result** | Both `PhysicalProduct` and `DigitalProduct` raised the same `ValueError` when given a negative stock quantity, confirming that both subclasses follow the validation rules inherited from `Product`. |
+
+## Section 5 - Handle exceptions gracefully
+
+### Section 5.1 - User input
+A user enters abc, then -5, then 12.50. Write down exactly what prints after each entry and what value is returned. Then run it and check.
+
+|  | abc | -5 | 12.50 |
+|---|---|---|---|
+| **Prediction** | Please enter a valid number, e.g. 12.50 | Please enter a number greater than zero. | No message printed. Returns 12.50. |
+| **Actual Result** |  |  |  |
