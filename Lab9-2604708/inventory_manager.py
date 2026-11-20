@@ -7,9 +7,8 @@ import json
 from pathlib import Path
 
 from classes.inventory import Inventory
-from classes.physical_product import PhysicalProduct
-from classes.digital_product import DigitalProduct
 from classes.supplier import Supplier
+from classes.product_factory import ProductFactory
 
 # -----------------------------------
 # file paths
@@ -118,28 +117,20 @@ def load_inventory() -> Inventory:
                 supplier_data["contact_email"]
             )
 
-            if product_type == "physical":
-                product = PhysicalProduct(
+            try:
+                product = ProductFactory.create(
+                    product_type,
                     product_data["id"],
                     product_data["name"],
                     product_data["price"],
                     product_data["stock"],
-                    product_data["weight"],
-                    supplier
+                    supplier,
+                    weight=product_data.get("weight", 0.0),
+                    download_size=product_data.get("download_size", 0.0)
                 )
 
-            elif product_type == "digital":
-                product = DigitalProduct(
-                    product_data["id"],
-                    product_data["name"],
-                    product_data["price"],
-                    product_data["stock"],
-                    product_data["download_size"],
-                    supplier
-                )
-
-            else:
-                print(f"[WARNING] Unknown product type: {product_type}")
+            except ValueError as e:
+                print(f"[WARNING] {e}")
                 continue
 
             inventory.add_product(product)
@@ -204,19 +195,21 @@ def add_product(inventory: Inventory) -> None:
 
     supplier = Supplier(supplier_id, supplier_name, supplier_email)
 
-    # create the appropriate product type
+    # create the appropriate product type using ProductFactory
     if product_type == "1":
         weight = get_valid_non_negative_float("Weight (kg): ")
 
-        new_product = PhysicalProduct(
-            product_id, product_name, price, stock, weight, supplier
+        new_product = ProductFactory.create(
+            "physical", product_id, product_name, price, stock,
+            supplier, weight=weight
         )
 
     else:
         download_size = get_valid_non_negative_float("Download Size (MB): ")
 
-        new_product = DigitalProduct(
-            product_id, product_name, price, stock, download_size, supplier
+        new_product = ProductFactory.create(
+            "digital", product_id, product_name, price, stock,
+            supplier, download_size=download_size
         )
 
     inventory.add_product(new_product)
