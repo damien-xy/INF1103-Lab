@@ -30,6 +30,8 @@ class ProductFactory:
 # testing
 # -----------------------------------
 if __name__ == "__main__":
+    from .order_line import OrderLine
+
     supplier = Supplier("S001", "Test Supplier", "test@example.com")
 
     # test physical product creation
@@ -51,3 +53,35 @@ if __name__ == "__main__":
         )
     except ValueError as e:
         print(f"Error: {e}")
+
+    print("\n--- Validation Tests ---")
+
+    # test invalid price
+    try:
+        ProductFactory.create("physical", "P001", "Monitor", 0, 10, supplier)
+    except ValueError as e:
+        print(f"Invalid Price: {e}")
+
+    # test negative physical product stock
+    try:
+        ProductFactory.create("physical", "P001", "Monitor", 250, -5, supplier)
+    except ValueError as e:
+        print(f"Physical Product: {e}")
+
+    # test negative digital product stock
+    try:
+        ProductFactory.create("digital", "D001", "Software", 50, -5, supplier)
+    except ValueError as e:
+        print(f"Digital Product: {e}")
+
+    # test invalid stock update
+    try:
+        physical_product.update_stock(-5)
+    except ValueError as e:
+        print(f"Stock Update: {e}")
+
+    # test invalid order line quantity
+    try:
+        OrderLine(physical_product, 0)
+    except ValueError as e:
+        print(f"OrderLine: {e}")

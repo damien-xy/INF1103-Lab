@@ -15,6 +15,12 @@ class Product(ABC):
     def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier) -> None:
         """ initialises a product with its ID, name, price, stock and supplier """
 
+        if not 0 < price < float("inf"):
+            raise ValueError("Price must be greater than zero and finite.")
+
+        if not isinstance(stock, int) or stock < 0:
+            raise ValueError("Stock quantity must be a non-negative integer.")
+
         self.__product_id: str = product_id
         self.__name: str = name
         self.__price: float = price
@@ -24,10 +30,10 @@ class Product(ABC):
     def update_stock(self, quantity: int) -> None:
         """ updates the product's stock quantity """
 
-        if isinstance(quantity, int) and quantity >= 0:
-            self.__stock = quantity
-        else:
-            print("[ERROR] Stock quantity must be a non-negative integer.")
+        if not isinstance(quantity, int) or quantity < 0:
+            raise ValueError("Stock quantity must be a non-negative integer.")
+
+        self.__stock = quantity
 
     def display_information(self) -> None:
         """ displays the product's information """

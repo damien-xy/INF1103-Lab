@@ -58,4 +58,4 @@ Think back to the Lab 8 LSP discussion. If Product validates that stock cannot g
 |  | Response |
 |---|---|
 | **Prediction** | No. `DigitalProduct` should follow the same stock validation rules as `Product`. Allowing negative stock would violate LSP, as subclasses should maintain the expected behaviour of their parent class. |
-| **Actual Result** |  |
+| **Actual Result** | Both `PhysicalProduct` and `DigitalProduct` raised the same `ValueError` when given a negative stock quantity, confirming that both subclasses follow the validation rules inherited from `Product`. |

@@ -14,6 +14,9 @@ class OrderLine:
     def __init__(self, product: Product, quantity: int) -> None:
         """ initialises an order line with a product and quantity """
 
+        if not isinstance(quantity, int) or quantity <= 0:
+            raise ValueError("Quantity must be a positive integer.")
+
         self.__product: Product = product
         self.__quantity: int = quantity
 
