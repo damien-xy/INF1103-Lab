@@ -51,3 +51,11 @@ Suppose a new BundleProduct type is added. How many places in your code would ne
 
 **Actual Result:**
 - Same as prediction. Product creation logic previously existed in 2 functions but is now centralised in 1 method, `ProductFactory.create()`.
+
+## Section 4 - Add validation
+Think back to the Lab 8 LSP discussion. If Product validates that stock cannot go negative, should DigitalProduct be allowed to skip or change that rule? Why? 
+
+|  | Response |
+|---|---|
+| **Prediction** | No. `DigitalProduct` should follow the same stock validation rules as `Product`. Allowing negative stock would violate LSP, as subclasses should maintain the expected behaviour of their parent class. |
+| **Actual Result** |  |
