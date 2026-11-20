@@ -76,4 +76,8 @@ Before running, write down how many products will load, which messages will prin
 |  | File Exists | File Renamed |
 |---|---|---|
 | **Prediction** | [ERROR] Product ID must be in the format P001. <br> Unknown product type: service. <br> Invalid price: abc. <br> 2 products loaded. <br> Load attempt finished. | Products file not found: products.csv <br> Load attempt finished. <br><br> **Notes:** The `except` and `finally` blocks will execute, while the `else` block will not. |
-| **Actual Result** | | |
+| **Actual Result** | [ERROR] Unknown product type: service <br> [ERROR] could not convert string to float: 'abc' <br> 3 products loaded. <br> Load attempt finished. | Products file not found: products.csv <br> Load attempt finished. <br><br> **Notes:** The `except` and `finally` blocks executed, while the `else` block did not. |
+
+**Notes:**
+- I predicted that only 2 products would load because D001 does not follow the Pxxx format required by `get_valid_product_id()`. However, `load_products()` does not call `get_valid_product_id()`, as products are created directly through `ProductFactory.create()`. Therefore, D001 was accepted and 3 products were successfully loaded.
+- My prediction for the renamed file was correct.

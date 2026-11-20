@@ -4,6 +4,7 @@
 # imports
 # -----------------------------------
 import json
+import csv
 from pathlib import Path
 
 from classes.inventory import Inventory
@@ -149,6 +150,42 @@ def load_inventory() -> Inventory:
 
     return inventory
 
+def load_products(path: str, inventory: Inventory, supplier: Supplier) -> None:
+    """ loads products from a CSV file into an Inventory object """
+
+    loaded = 0
+
+    try:
+        file = open(path, newline="", encoding="utf-8")
+
+    except FileNotFoundError:
+        print(f"Products file not found: {path}")
+
+    else:
+        with file:
+            reader = csv.reader(file)
+            next(reader, None)
+
+            for row in reader:
+                try:
+                    product_type, product_id, name, price, stock_quantity = row
+
+                    product = ProductFactory.create(
+                        product_type, product_id, name,
+                        float(price), int(stock_quantity), supplier
+                    )
+
+                    inventory.add_product(product)
+                    loaded += 1
+
+                except ValueError as e:
+                    print(f"[ERROR] {e}")
+
+        print(f"{loaded} products loaded.")
+
+    finally:
+        print("Load attempt finished.")
+
 def save_inventory(inventory: Inventory) -> None:
     """ saves inventory data to inventory.json """
 
@@ -269,6 +306,17 @@ def display_menu() -> None:
     print("5. Save Inventory")
     print("6. Exit")
     print("----------------------------")
+
+# -----------------------------------
+# testing
+# -----------------------------------
+def test_load_products() -> None:
+    """ tests loading products from a CSV file """
+
+    inventory = Inventory()
+    supplier = Supplier("S001", "Test Supplier", "test@example.com")
+
+    load_products("products.csv", inventory, supplier)
 
 # -----------------------------------
 # main
