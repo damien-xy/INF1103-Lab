@@ -1,0 +1,37 @@
+name: Lab 9 Automated Tests
+
+on:
+  push:
+    paths:
+      - 'Lab9-2604708/**'
+      - '.github/workflows/lab9-tests.yml'
+
+  pull_request:
+    paths:
+      - 'Lab9-2604708/**'
+      - '.github/workflows/lab9-tests.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Lab9-2604708
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Run automated tests
+        run: python -m unittest discover -s tests -v
