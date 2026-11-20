@@ -42,22 +42,25 @@ def get_valid_product_name() -> str:
 
         print("[ERROR] Product name must contain at least one letter.")
 
-def get_valid_price() -> float:
-    """ gets and validates a product price """
+def get_positive_float(prompt: str) -> float:
+    """ gets and validates a positive decimal number """
 
     while True:
-        price_input = input("Price: ").strip()
-
         try:
-            price = float(price_input)
+            value = float(input(prompt))
 
-            if price >= 0:
-                return price
+            if value <= 0:
+                print("Please enter a number greater than zero.")
+                continue
 
-            print("[ERROR] Price cannot be negative.")
+            if not value < float("inf"):
+                print("Please enter a finite number.")
+                continue
+
+            return value
 
         except ValueError:
-            print("[ERROR] Price must be a valid number.")
+            print("Please enter a valid number, e.g. 12.50")
 
 def get_valid_stock(prompt: str = "Stock Quantity: ") -> int:
     """ gets and validates a product stock quantity """
@@ -183,7 +186,7 @@ def add_product(inventory: Inventory) -> None:
 
     # get common product information
     product_name = get_valid_product_name()
-    price = get_valid_price()
+    price = get_positive_float("Price: ")
     stock = get_valid_stock()
 
     # get supplier information

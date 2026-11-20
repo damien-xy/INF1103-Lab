@@ -68,4 +68,4 @@ A user enters abc, then -5, then 12.50. Write down exactly what prints after eac
 |  | abc | -5 | 12.50 |
 |---|---|---|---|
 | **Prediction** | Please enter a valid number, e.g. 12.50 | Please enter a number greater than zero. | No message printed. Returns 12.50. |
-| **Actual Result** |  |  |  |
+| **Actual Result** | Please enter a valid number, e.g. 12.50 | Please enter a number greater than zero. | No message printed. Returns 12.5. |
