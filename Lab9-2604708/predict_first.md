@@ -37,3 +37,16 @@ WWhat happens if you call `ProductFactory.create("service", ...)`? Which line ra
 |---|---|
 | **Prediction** | Since `"service"` does not match `"physical"` or `"digital"`, the `else` block raises a `ValueError` at `raise ValueError(f"Unknown product type: {product_type}")`. If the exception is not caught, the program terminates with an error. |
 | **Actual Result** | Same as prediction. Line 27 raised a `ValueError` with the message `Unknown product type: service`, and the program terminated with a traceback because the exception was not caught. |
+
+### Section 3.3 - Who knows about what?
+Suppose a new BundleProduct type is added. How many places in your code would need to change before you added the factory, and how many after? Count them, then explain why the factory still breaks OCP and why that is acceptable here.
+
+|  | Before | After |
+|---|---|---|
+| **Prediction (only considering changes to product creation logic)** | 2 places: `add_product()` and `load_inventory()` | 1 place: `ProductFactory.create()` |
+
+**Explanation:** 
+- The factory still breaks OCP because its `create()` method must be modified whenever a new product type is added.
+- This is acceptable because product creation is centralised in one place, reducing coupling and improving maintainability.
+
+**Actual Result:**
