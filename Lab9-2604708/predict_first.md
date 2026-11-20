@@ -69,3 +69,11 @@ A user enters abc, then -5, then 12.50. Write down exactly what prints after eac
 |---|---|---|---|
 | **Prediction** | Please enter a valid number, e.g. 12.50 | Please enter a number greater than zero. | No message printed. Returns 12.50. |
 | **Actual Result** | Please enter a valid number, e.g. 12.50 | Please enter a number greater than zero. | No message printed. Returns 12.5. |
+
+### Section 5.2 - Loading products from a file
+Before running, write down how many products will load, which messages will print, and in what order. Then rename products.csv and predict again: which of except, else and finally will run? 
+
+|  | File Exists | File Renamed |
+|---|---|---|
+| **Prediction** | [ERROR] Product ID must be in the format P001. <br> Unknown product type: service. <br> Invalid price: abc. <br> 2 products loaded. <br> Load attempt finished. | Products file not found: products.csv <br> Load attempt finished. <br><br> **Notes:** The `except` and `finally` blocks will execute, while the `else` block will not. |
+| **Actual Result** | | |
